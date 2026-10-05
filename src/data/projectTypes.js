@@ -1,36 +1,37 @@
 import { Building2, Utensils, BriefcaseBusiness, Images, Package, CalendarDays, Blocks } from 'lucide-react';
+import { sectionsById } from './sections';
 
-function section(title, type = 'text') {
-  return { id: title.toLowerCase().replaceAll(' ', '-'), title: title.toUpperCase(), type };
+function recipe(...ids) {
+  return ids.map(id => sectionsById[id]);
 }
 
 export const projectTypes = [
   {
     id: 'business', label: 'BUSINESS WEBSITE', icon: Building2,
-    sections: [section('Hero', 'hero'), section('About'), section('Services', 'cards'), section('Contact', 'contact')],
+    sections: recipe('hero', 'about', 'services', 'contact'),
   },
   {
     id: 'hospitality', label: 'RESTAURANT / HOSPITALITY', icon: Utensils,
-    sections: [section('Hero', 'hero'), section('About'), section('Menu'), section('Gallery', 'cards'), section('Contact', 'contact')],
+    sections: recipe('hero', 'about', 'menu', 'gallery', 'contact'),
   },
   {
     id: 'services', label: 'SERVICES', icon: BriefcaseBusiness,
-    sections: [section('Hero', 'hero'), section('Services', 'cards'), section('Why Us'), section('Testimonials'), section('Contact', 'contact')],
+    sections: recipe('hero', 'services', 'why-us', 'testimonials', 'contact'),
   },
   {
     id: 'portfolio', label: 'PORTFOLIO', icon: Images,
-    sections: [section('Hero', 'hero'), section('About'), section('Portfolio', 'cards'), section('Contact', 'contact')],
+    sections: recipe('hero', 'about', 'portfolio', 'contact'),
   },
   {
     id: 'catalogue', label: 'CATALOGUE', icon: Package,
-    sections: [section('Hero', 'hero'), section('Categories'), section('Products', 'cards'), section('Contact', 'contact')],
+    sections: recipe('hero', 'categories', 'products', 'contact'),
   },
   {
     id: 'booking', label: 'BOOKING / APPOINTMENTS', icon: CalendarDays,
-    sections: [section('Hero', 'hero'), section('Services', 'cards'), section('Booking'), section('Contact', 'contact')],
+    sections: recipe('hero', 'services', 'booking', 'contact'),
   },
   {
     id: 'custom', label: 'CUSTOM', icon: Blocks,
-    sections: [section('Hero', 'hero'), section('Custom Section'), section('Contact', 'contact')],
+    sections: recipe('hero', 'custom-section', 'contact'),
   },
 ];

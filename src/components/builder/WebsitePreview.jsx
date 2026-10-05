@@ -1,12 +1,8 @@
 import { Image as ImageIcon } from 'lucide-react';
+import { sectionsById } from '../../data/sections';
 
 const exampleBranding = { businessName: 'YOUR BUSINESS', tagline: 'Your tagline will appear here.' };
-const exampleSections = [
-  { id: 'hero', type: 'hero' },
-  { id: 'about', type: 'about', title: 'ABOUT' },
-  { id: 'services', type: 'services', title: 'SERVICES' },
-  { id: 'contact', type: 'contact', title: 'CONTACT' },
-];
+const exampleSections = ['hero', 'about', 'services', 'contact'].map(id => sectionsById[id]);
 
 function PreviewSection({ section, branding }) {
   if (section.type === 'hero') return <div className="concept-hero">

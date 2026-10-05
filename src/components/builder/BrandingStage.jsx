@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react';
 
 const logoTypes = ['image/png', 'image/jpeg', 'image/webp'];
 
-export default function BrandingStage({ branding, onChange, onLogoSelect, complete, headingRef }) {
+export default function BrandingStage({ branding, onChange, onLogoSelect, complete, onContinue, headingRef }) {
   const [hexValue, setHexValue] = useState(branding.brandColor);
   const [colorError, setColorError] = useState('');
   const [logoError, setLogoError] = useState('');
@@ -51,8 +51,8 @@ export default function BrandingStage({ branding, onChange, onLogoSelect, comple
       </div>
     </div>
     <div className="builder-progression">
-      <button className="button builder-continue" type="button" disabled aria-describedby="builder-sections-note">CONTINUE TO SECTIONS<ArrowRight aria-hidden="true" /></button>
-      <p id="builder-sections-note">{complete ? 'Branding complete. Sections is next and is not available yet.' : 'Enter a business name to complete Branding. Sections is not available yet.'}</p>
+      <button className="button builder-continue" type="button" disabled={!complete} onClick={onContinue} aria-describedby="builder-sections-note">CONTINUE TO SECTIONS<ArrowRight aria-hidden="true" /></button>
+      <p id="builder-sections-note">{complete ? 'Branding complete. Choose your website sections next.' : 'Enter a business name to continue to Sections.'}</p>
     </div>
   </section>;
 }

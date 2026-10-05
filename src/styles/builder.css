@@ -28,7 +28,7 @@ button.builder-stage-control { cursor: pointer; }
 .builder-active-dot { width: 4px; height: 4px; flex-shrink: 0; border-radius: 50%; background: var(--digital-green); }
 .builder-stage-label { display: flex; gap: 10px; align-items: center; margin: 0 0 12px; color: var(--accent-bright); font-size: 10px; font-weight: 600; letter-spacing: .14em; }
 .builder-stage-label > span { color: var(--digital-signal-core); }
-.builder-project-stage h2, .builder-branding-stage h2 { margin: 0; font-size: clamp(24px, 2vw, 30px); font-weight: 500; line-height: 1.25; letter-spacing: -.025em; }
+.builder-project-stage h2, .builder-branding-stage h2, .builder-sections-stage h2 { margin: 0; font-size: clamp(24px, 2vw, 30px); font-weight: 500; line-height: 1.25; letter-spacing: -.025em; }
 .builder-stage-description { margin: 12px 0 22px; max-width: 350px; color: var(--muted); font-size: 12px; line-height: 1.7; }
 .builder-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
 .builder-options li:last-child { grid-column: 1 / -1; }
@@ -66,6 +66,22 @@ button.builder-stage-control { cursor: pointer; }
 .builder-logo-status > span { min-width: 0; max-width: 100%; }
 .builder-logo-status button { padding: 7px 0; border: 0; background: transparent; color: var(--accent-bright); font-size: 10px; font-weight: 600; cursor: pointer; }
 .builder-progression > p { margin: 10px 0 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
+.builder-sections-stage { width: 100%; min-width: 0; }
+.builder-section-group + .builder-section-group { margin-top: 28px; }
+.builder-section-group h3 { margin: 0; font-size: 10px; font-weight: 600; letter-spacing: .1em; }
+.builder-current-sections, .builder-section-library { margin: 14px 0 0; padding: 0; list-style: none; }
+.builder-current-sections { display: grid; gap: 8px; }
+.builder-current-sections li { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 5px 12px; border: 1px solid var(--border); border-radius: 5px; background: var(--background); }
+.builder-section-order { color: var(--muted); font-size: 10px; }
+.builder-section-title { flex: 1; min-width: 0; font-size: 10px; font-weight: 600; letter-spacing: .04em; }
+.builder-section-core { color: var(--muted); font-size: 8px; letter-spacing: .08em; }
+.builder-current-sections button { display: grid; place-items: center; flex-shrink: 0; width: 36px; height: 36px; border: 0; border-radius: 3px; background: transparent; color: var(--accent-bright); cursor: pointer; }
+.builder-current-sections button svg { width: 15px; height: 15px; }
+.builder-section-library { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.builder-section-library button { display: flex; align-items: center; gap: 9px; width: 100%; min-height: 48px; padding: 12px; border: 1px solid var(--border); border-radius: 5px; background: var(--background); color: var(--text); text-align: left; cursor: pointer; }
+.builder-section-library button svg { width: 15px; height: 15px; flex-shrink: 0; color: var(--accent); }
+.builder-section-library button span { min-width: 0; font-size: 9px; font-weight: 600; line-height: 1.5; letter-spacing: .04em; }
+.builder-section-library button:hover, .builder-current-sections button:hover { background: var(--surface-raised); }
 .builder-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 .builder-preview { min-width: 0; width: 100%; max-width: 760px; justify-self: center; position: sticky; top: 24px; }
 .builder-preview-heading { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 18px; }
@@ -75,7 +91,7 @@ button.builder-stage-control { cursor: pointer; }
 @media (min-width: 1101px) {
   .builder-workspace { --builder-workspace-height: max(780px, calc(100svh - 380px)); min-height: var(--builder-workspace-height); align-items: stretch; }
   .builder-controls { min-height: var(--builder-workspace-height); display: flex; padding: 28px; }
-  .builder-project-stage, .builder-branding-stage { display: flex; flex: 1; min-width: 0; flex-direction: column; }
+  .builder-project-stage, .builder-branding-stage, .builder-sections-stage { display: flex; flex: 1; min-width: 0; flex-direction: column; }
   .builder-options { gap: 16px; }
   .builder-option { min-height: 116px; padding: 20px; gap: 18px; }
   .builder-options li:last-child .builder-option { min-height: 84px; }
