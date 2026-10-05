@@ -77,6 +77,9 @@ button.builder-stage-control { cursor: pointer; }
 .builder-section-core { color: var(--muted); font-size: 8px; letter-spacing: .08em; }
 .builder-current-sections button { display: grid; place-items: center; flex-shrink: 0; width: 36px; height: 36px; border: 0; border-radius: 3px; background: transparent; color: var(--accent-bright); cursor: pointer; }
 .builder-current-sections button svg { width: 15px; height: 15px; }
+.builder-section-actions { display: flex; flex-shrink: 0; gap: 2px; }
+.builder-current-sections button:disabled { opacity: .35; cursor: not-allowed; }
+.builder-current-sections button:disabled:hover { background: transparent; }
 .builder-section-library { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .builder-section-library button { display: flex; align-items: center; gap: 9px; width: 100%; min-height: 48px; padding: 12px; border: 1px solid var(--border); border-radius: 5px; background: var(--background); color: var(--text); text-align: left; cursor: pointer; }
 .builder-section-library button svg { width: 15px; height: 15px; flex-shrink: 0; color: var(--accent); }
@@ -170,6 +173,8 @@ button.builder-stage-control { cursor: pointer; }
   .builder-intro { flex-direction: column; align-items: start; gap: 18px; margin-bottom: 24px; }
   .builder-intro > div > p:last-child { font-size: 13px; }
   .builder-controls { padding: 18px; }
+  .builder-current-sections li { gap: 8px; padding-inline: 10px; }
+  .builder-current-sections button { width: 40px; height: 40px; }
   .builder-progress ol { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 8px; }
   .builder-progress li { flex-direction: row; font-size: 8px; gap: 5px; }
   .builder-stage-control { flex-direction: row; }

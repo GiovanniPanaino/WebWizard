@@ -64,6 +64,18 @@ export default function BuildProject() {
     setSelectedSections(current => current.filter(section => section.id !== id));
   }
 
+  function moveSection(id, direction) {
+    if (!sectionsById[id] || sectionsById[id].core || !['up', 'down'].includes(direction)) return;
+    setSelectedSections(current => {
+      const index = current.findIndex(section => section.id === id);
+      const targetIndex = index + (direction === 'up' ? -1 : 1);
+      if (index <= 0 || index >= current.length - 1 || targetIndex <= 0 || targetIndex >= current.length - 1 || current[targetIndex].core) return current;
+      const reordered = [...current];
+      [reordered[index], reordered[targetIndex]] = [reordered[targetIndex], reordered[index]];
+      return reordered;
+    });
+  }
+
   function updateBranding(field, value) {
     setBranding(current => ({ ...current, [field]: value }));
   }
@@ -86,7 +98,7 @@ export default function BuildProject() {
       <BuilderProgress projectComplete={Boolean(selectedProjectType)} brandingComplete={brandingComplete} sectionsComplete={sectionsComplete} activeStage={activeStage} onStageChange={changeStage} />
       <div className="builder-workspace">
         <div className="builder-controls">{activeStage === 'sections'
-          ? <SectionsStage selectedSections={selectedSections} onAdd={addSection} onRemove={removeSection} complete={sectionsComplete} headingRef={stageHeadingRef} />
+          ? <SectionsStage selectedSections={selectedSections} onAdd={addSection} onRemove={removeSection} onMove={moveSection} complete={sectionsComplete} headingRef={stageHeadingRef} />
           : activeStage === 'branding'
             ? <BrandingStage branding={branding} onChange={updateBranding} onLogoSelect={selectLogo} complete={brandingComplete} onContinue={() => changeStage('sections')} headingRef={stageHeadingRef} />
             : <ProjectStage selectedId={selectedProjectTypeId} onSelect={selectProject} onContinue={() => changeStage('branding')} headingRef={stageHeadingRef} />}</div>
