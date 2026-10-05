@@ -1,0 +1,102 @@
+﻿@import './styles/home.css';
+:root {
+  color-scheme: light;
+  --background: #f7f4ee;
+  --surface: #faf8f3;
+  --surface-raised: #eee8de;
+  --text: #202226;
+  --muted: #62615d;
+  --accent: #865a32;
+  --accent-bright: #704722;
+  --digital-signal-core: #005e8a;
+  --digital-cycle: 14s;
+  --digital-blue: #087da8;
+  --digital-blue-soft: #087da880;
+  --digital-blue-glow: #087da81a;
+  --digital-green: #21834c;
+  --digital-green-soft: #21834c88;
+  --digital-green-glow: #21834c1a;
+  --border: #20222624;
+  --border-accent: #865a3252;
+  --space-1: .5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 5rem;
+  --container: 1600px;
+  --radius: 4px;
+  --radius-panel: 10px;
+  --shadow: 0 20px 60px #20222612;
+  --transition: 180ms ease;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+#website-packages, #websites, #applications, #business-systems { scroll-margin-top: var(--space-4); }
+body { margin: 0; min-width: 320px; background: var(--background); color: var(--text); }
+button, input, textarea, select { font: inherit; }
+a { color: inherit; text-decoration: none; }
+button { color: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 6px; }
+::selection { background: var(--accent); color: var(--background); }
+.container { width: min(var(--container), calc(100% - 112px)); margin-inline: auto; }
+.eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
+.button { display: inline-flex; justify-content: center; align-items: center; gap: 24px; min-height: 54px; padding: 16px 23px; border: 1px solid var(--border-accent); border-radius: var(--radius); font-size: 10px; font-weight: 700; letter-spacing: .12em; transition: background var(--transition), border-color var(--transition), transform var(--transition); }
+.button svg { width: 17px; height: 17px; }
+.button-primary { background: var(--accent); color: #fffaf3; border-color: var(--accent); }
+.button-primary:hover { background: var(--accent-bright); transform: translateY(-2px); }
+.button-secondary { background: transparent; color: var(--muted); }
+.button[aria-disabled='true'] { cursor: not-allowed; }
+.skip-link { position: absolute; z-index: 10; top: 12px; left: 12px; transform: translateY(-160%); padding: 14px 20px; background: var(--text); color: var(--background); }
+.skip-link:focus { transform: translateY(0); }
+@media (max-width: 1100px) { .container { width: calc(100% - 64px); } }
+@media (max-width: 600px) { .container { width: calc(100% - 40px); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* One paced packet: send, receive, endpoint activation, then a quiet pause. */
+.digital-traveller { stroke: var(--digital-signal-core); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 5 100; stroke-dashoffset: 5; opacity: 0; animation: digital-transfer var(--digital-cycle) linear infinite; }
+@keyframes digital-transfer {
+  0%, 12% { stroke-dashoffset: 5; opacity: 0; }
+  15% { stroke-dashoffset: 0; opacity: 1; }
+  65% { stroke-dashoffset: -100; opacity: 1; }
+  68%, 100% { stroke-dashoffset: -100; opacity: 0; }
+}
+@keyframes digital-receive {
+  0%, 32%, 55%, 100% { opacity: .65; }
+  40%, 46% { opacity: 1; }
+}
+@keyframes digital-active {
+  0%, 60%, 88%, 100% { opacity: .65; }
+  68%, 76% { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .digital-traveller { animation: none; opacity: 1; stroke-dashoffset: -45; }
+}
+
+/* Dark technical surfaces have their own contrast tokens, independent of the page. */
+.system-visual, .project-media, .harvard-screen {
+  --surface: #22272b;
+  --surface-raised: #2b3135;
+  --text: #f7f4ee;
+  --muted: #c1c0b8;
+  --accent: #c49b6d;
+  --accent-bright: #e2bd8f;
+  --border: #ffffff26;
+  --border-accent: #c49b6d66;
+  --digital-signal-core: #d1f8ff;
+  --digital-blue: #39cfff;
+  --digital-blue-soft: #39cfff80;
+  --digital-blue-glow: #16b9ff26;
+  --digital-green: #66dda0;
+  --digital-green-soft: #45b78088;
+  --digital-green-glow: #22ad7926;
+  color: var(--text);
+  color-scheme: dark;
+}
