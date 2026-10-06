@@ -7,6 +7,16 @@
     <meta name="theme-color" content="#111210" />
     <meta name="description" content="The Tasseomancer&#39;s Cup Development Studio. Professional websites, custom applications and business systems. Powered by LUCID." />
     <title>The Tasseomancer's Cup | Development Studio</title>
+    <script>
+      // Restore the GitHub Pages SPA URL before BrowserRouter reads it.
+      (function () {
+        var base = '/WebWizard/';
+        var route = new URLSearchParams(window.location.search).get('__ww_route');
+        if (window.location.pathname === base && route && route.indexOf(base) === 0) {
+          window.history.replaceState(null, '', route);
+        }
+      }());
+    </script>
   </head>
   <body>
     <div id="root"></div>
