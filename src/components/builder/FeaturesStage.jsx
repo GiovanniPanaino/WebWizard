@@ -1,7 +1,8 @@
 import { ArrowRight, Check } from 'lucide-react';
 import { featureCatalogue } from '../../data/features';
+import WizardInsight from './WizardInsight';
 
-export default function FeaturesStage({ selectedFeatures, noExtraFeatures, onToggle, onNoExtraFeatures, complete, headingRef }) {
+export default function FeaturesStage({ selectedFeatures, noExtraFeatures, onToggle, onNoExtraFeatures, complete, headingRef, insight, onAddSection }) {
   return <section className="builder-features-stage" aria-labelledby="builder-features-heading">
     <p className="builder-stage-label"><span>04</span> FEATURES</p>
     <h2 id="builder-features-heading" ref={headingRef} tabIndex={-1}>WHAT SHOULD IT DO?</h2>
@@ -20,6 +21,7 @@ export default function FeaturesStage({ selectedFeatures, noExtraFeatures, onTog
       <span className="builder-feature-description">My website does not need any extra functionality.</span>
     </button>
     <p className="builder-field-note" role="status">{noExtraFeatures ? 'No extra features selected.' : selectedFeatures.length ? `${selectedFeatures.length} ${selectedFeatures.length === 1 ? 'feature' : 'features'} selected.` : 'Select features, or choose No extra features to complete this step.'}</p>
+    <WizardInsight insight={insight} onAddSection={onAddSection} />
     <div className="builder-progression">
       <button className="button builder-continue" type="button" disabled aria-describedby="builder-style-note">CONTINUE TO STYLE<ArrowRight aria-hidden="true" /></button>
       <p id="builder-style-note">{complete ? 'Features complete. Style is next and is not available yet.' : 'Answer the features question to complete this step. Style is not available yet.'}</p>

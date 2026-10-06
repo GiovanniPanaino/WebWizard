@@ -12,6 +12,7 @@ import { packages } from '../data/packages';
 import { projectTypes } from '../data/projectTypes';
 import { sectionsById } from '../data/sections';
 import { featureCatalogue } from '../data/features';
+import { assessProject } from '../utils/assessProject';
 import '../styles/builder.css';
 import '../styles/builder-refinement.css';
 
@@ -115,6 +116,7 @@ export default function BuildProject() {
   const selectedProjectType = projectTypes.find(type => type.id === selectedProjectTypeId);
   const [searchParams] = useSearchParams();
   const startingPackage = packages.find(item => item.id === searchParams.get('package'));
+  const insight = assessProject({ selectedFeatures, selectedSections, noExtraFeatures, startingPackageId: startingPackage?.id });
 
   return <div className="builder-page">
     <a className="skip-link" href="#builder-content">Skip to workshop</a>
@@ -128,7 +130,7 @@ export default function BuildProject() {
       <BuilderProgress projectComplete={Boolean(selectedProjectType)} brandingComplete={brandingComplete} sectionsComplete={sectionsComplete} featuresComplete={featuresComplete} activeStage={activeStage} onStageChange={changeStage} />
       <div className="builder-workspace">
         <div className="builder-controls">{activeStage === 'features'
-          ? <FeaturesStage selectedFeatures={selectedFeatures} noExtraFeatures={noExtraFeatures} onToggle={toggleFeature} onNoExtraFeatures={toggleNoExtraFeatures} complete={featuresComplete} headingRef={stageHeadingRef} />
+          ? <FeaturesStage selectedFeatures={selectedFeatures} noExtraFeatures={noExtraFeatures} onToggle={toggleFeature} onNoExtraFeatures={toggleNoExtraFeatures} complete={featuresComplete} headingRef={stageHeadingRef} insight={insight} onAddSection={addSection} />
           : activeStage === 'sections'
           ? <SectionsStage selectedSections={selectedSections} onAdd={addSection} onRemove={removeSection} onMove={moveSection} complete={sectionsComplete} onContinue={() => changeStage('features')} headingRef={stageHeadingRef} />
           : activeStage === 'branding'
