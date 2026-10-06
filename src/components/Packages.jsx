@@ -2,11 +2,13 @@
 import { Link } from 'react-router-dom';
 import { packages, paymentTerms } from '../data/packages';
 import PackageVisual from './PackageVisual';
+import CircuitTrace from './CircuitTrace';
 import '../styles/packages.css';
 
 function PackageStage({ item }) {
   return (
     <article id={`package-${item.id}`} className={`package-stage${item.recommended ? ' package-stage--recommended' : ''}`} aria-labelledby={`package-${item.id}-heading`}>
+      <CircuitTrace compact />
       <div className="package-identity">
         <span className="package-number" aria-hidden="true">{item.stage}</span>
         <div>
@@ -35,6 +37,7 @@ function PackageStage({ item }) {
 export default function Packages() {
   return (
     <section id="website-packages" className="packages container" aria-labelledby="packages-heading">
+      <CircuitTrace />
       <header className="packages-intro">
         <p className="eyebrow">WEBSITE DEVELOPMENT</p>
         <h2 id="packages-heading">Choose the right<br /> starting point.</h2>

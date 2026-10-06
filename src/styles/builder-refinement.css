@@ -1,0 +1,40 @@
+/* Web Wizard shell tokens stay outside the customer's concept canvas. */
+.builder-page {
+  --accent: #006c91;
+  --accent-bright: #00577c;
+  --border-accent: #087da84d;
+  --heritage: #865a32;
+}
+.builder-page .builder-header { min-height: 88px; }
+.builder-page .builder-brand-signature { margin-top: 6px; font-size: 9px; letter-spacing: .16em; }
+.builder-header-actions { display: flex; align-items: center; gap: 28px; }
+.builder-lucid { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 10px; white-space: nowrap; }
+.builder-lucid strong { color: var(--text); font-size: 10px; font-weight: 600; letter-spacing: .15em; }
+.builder-lucid i { width: 4px; height: 4px; border-radius: 50%; background: var(--digital-green); }
+.builder-system-divider { margin: -12px 0 18px; }
+.builder-page .builder-progress { border-bottom-color: var(--border-accent); }
+.builder-page .builder-step-number { border-radius: 5px; }
+.builder-page .builder-controls { border-top: 2px solid var(--digital-blue); box-shadow: 0 8px 24px #20222605; }
+.builder-page .builder-stage-label { border-left: 2px solid var(--heritage); padding-left: 10px; }
+.builder-page .builder-option[aria-pressed='true'],
+.builder-page .builder-feature-card[aria-pressed='true'] { background: #087da809; }
+.builder-page .builder-continue:not(:disabled) { background: var(--accent); color: #fffaf3; border-color: var(--accent); }
+.builder-page .builder-continue:not(:disabled):hover { background: var(--accent-bright); }
+.builder-page .preview-workspace { position: relative; border-color: var(--border-accent); background: linear-gradient(135deg, #087da806, #eee8de); }
+.builder-page .preview-workspace > .circuit-trace { top: -10px; right: 14px; width: min(45%, 340px); }
+.builder-page .concept-browser-dots i:not(:first-child) { background: #39cfff; }
+/* The concept keeps its own accent fallback and selected customer colour. */
+.builder-page .concept-canvas { --accent: #865a32; --accent-bright: #704722; --border-accent: #865a3252; }
+@media (max-width: 600px) {
+  .builder-page .builder-header { min-height: 86px; }
+  .builder-page .builder-brand-signature { font-size: 8px; }
+  .builder-header-actions { flex-direction: column; align-items: end; gap: 0; }
+  .builder-page .builder-back { padding-block: 8px; font-size: 8px; }
+  .builder-page .builder-back > span { max-width: none; }
+  .builder-lucid, .builder-lucid strong { font-size: 8px; }
+  .builder-system-divider { margin: -8px 0 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .builder-page .circuit-packet { animation: none; opacity: 0; }
+  .builder-page .circuit-endpoint { animation: none; opacity: 1; }
+}

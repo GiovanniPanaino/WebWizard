@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom';
 import { services } from '../data/services';
 import ServiceVisual from './ServiceVisual';
+import CircuitTrace from './CircuitTrace';
 import '../styles/services.css';
 
 function ServiceRow({ service }) {
@@ -11,6 +12,7 @@ function ServiceRow({ service }) {
 
   return (
     <article id={id} className={`service-row${featured ? ' service-row--featured' : ''}`} aria-labelledby={`${id}-heading`}>
+      <CircuitTrace compact />
       <span className="service-number" aria-hidden="true">{number}</span>
       <div className="service-heading">
         <h3 id={`${id}-heading`}>{title}</h3>
@@ -19,7 +21,8 @@ function ServiceRow({ service }) {
       <ServiceVisual kind={id} />
       <div className="service-detail">
         <p className="service-description">{description}</p>
-        <ul className="service-capabilities">{capabilities.map(item => <li key={item}>{item}</li>)}</ul>
+        <ul className="service-capabilities service-desktop-capabilities">{capabilities.map(item => <li key={item}>{item}</li>)}</ul>
+        <details className="service-mobile-details"><summary>Explore capabilities</summary><ul className="service-capabilities">{capabilities.map(item => <li key={item}>{item}</li>)}</ul></details>
       </div>
       <div className="service-action">
         {href.startsWith('#')
@@ -33,6 +36,7 @@ function ServiceRow({ service }) {
 export default function Services() {
   return (
     <section className="services container" aria-labelledby="services-heading">
+      <CircuitTrace />
       <header className="services-intro">
         <p className="eyebrow">WHAT WE BUILD</p>
         <h2 id="services-heading">Digital solutions built<br className="services-heading-break" /> around your business.</h2>

@@ -1,4 +1,5 @@
 import { Image as ImageIcon } from 'lucide-react';
+import CircuitTrace from '../CircuitTrace';
 import { sectionsById } from '../../data/sections';
 import { featureCatalogue } from '../../data/features';
 
@@ -24,6 +25,7 @@ export default function WebsitePreview({ branding = {}, sections = exampleSectio
   return <section className="builder-preview" aria-labelledby="builder-preview-heading">
     <div className="builder-preview-heading"><h2 id="builder-preview-heading">Your website, taking shape.</h2><span>CONCEPT PREVIEW</span></div>
     <div className="preview-workspace">
+    <CircuitTrace compact />
     <figure className="concept-preview">
       <div className="concept-browser" aria-hidden="true"><span className="concept-browser-dots"><i /><i /><i /></span><span className="concept-browser-project">{projectType || 'WEBSITE CANVAS'}</span><span className="concept-browser-size">DESKTOP</span></div>
       <div className="concept-canvas-viewport" tabIndex={0} role="region" aria-label="Concept website canvas" aria-describedby="builder-preview-summary">

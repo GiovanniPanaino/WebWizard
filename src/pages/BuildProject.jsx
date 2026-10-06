@@ -7,11 +7,13 @@ import BrandingStage from '../components/builder/BrandingStage';
 import SectionsStage from '../components/builder/SectionsStage';
 import FeaturesStage from '../components/builder/FeaturesStage';
 import WebsitePreview from '../components/builder/WebsitePreview';
+import CircuitTrace from '../components/CircuitTrace';
 import { packages } from '../data/packages';
 import { projectTypes } from '../data/projectTypes';
 import { sectionsById } from '../data/sections';
 import { featureCatalogue } from '../data/features';
 import '../styles/builder.css';
+import '../styles/builder-refinement.css';
 
 export default function BuildProject() {
   const [selectedProjectTypeId, setSelectedProjectTypeId] = useState(null);
@@ -122,6 +124,7 @@ export default function BuildProject() {
         <div><p className="eyebrow">WEBSITE WORKSHOP</p><h1>BUILD YOUR WEBSITE</h1><p>Put the pieces together. We’ll turn your ideas into the real thing.</p></div>
         {startingPackage && <p className="builder-package"><span>STARTING FROM</span>{startingPackage.name}</p>}
       </div>
+      <div className="builder-system-divider"><CircuitTrace /></div>
       <BuilderProgress projectComplete={Boolean(selectedProjectType)} brandingComplete={brandingComplete} sectionsComplete={sectionsComplete} featuresComplete={featuresComplete} activeStage={activeStage} onStageChange={changeStage} />
       <div className="builder-workspace">
         <div className="builder-controls">{activeStage === 'features'
