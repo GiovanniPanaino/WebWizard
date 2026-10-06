@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Wizard — Redirecting</title>
+    <script>
+      // GitHub Pages serves this file for SPA paths that have no static file.
+      // Carry the complete URL through the project root without losing queries.
+      (function () {
+        var base = '/WebWizard/';
+        var location = window.location;
+        if (location.pathname.indexOf(base) === 0 &&
+            location.pathname !== base + '404.html') {
+          location.replace(base + '?__ww_route=' + encodeURIComponent(
+            location.pathname + location.search + location.hash
+          ));
+        }
+      }());
+    </script>
+  </head>
+  <body>
+    <p><a href="/WebWizard/">Return to Web Wizard</a></p>
+  </body>
+</html>
