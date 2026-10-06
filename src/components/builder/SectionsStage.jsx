@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef, useState } from 'react';
 import { ArrowRight, ChevronUp, ChevronDown, Plus, X } from 'lucide-react';
 import { sectionCatalogue } from '../../data/sections';
 
-export default function SectionsStage({ selectedSections, onAdd, onRemove, onMove, complete, headingRef }) {
+export default function SectionsStage({ selectedSections, onAdd, onRemove, onMove, complete, onContinue, headingRef }) {
   const selectedIds = new Set(selectedSections.map(section => section.id));
   const availableSections = sectionCatalogue.filter(section => !selectedIds.has(section.id));
   const currentListRef = useRef(null);
@@ -69,8 +69,8 @@ export default function SectionsStage({ selectedSections, onAdd, onRemove, onMov
     </div>
     <p className="builder-sr-only" role="status">{announcement}</p>
     <div className="builder-progression">
-      <button className="button builder-continue" type="button" disabled aria-describedby="builder-features-note">CONTINUE TO FEATURES<ArrowRight aria-hidden="true" /></button>
-      <p id="builder-features-note">{complete ? 'Sections complete. Features is next and is not available yet.' : 'Keep at least one content section alongside Hero and Contact. Features is not available yet.'}</p>
+      <button className="button builder-continue" type="button" disabled={!complete} onClick={onContinue} aria-describedby="builder-features-note">CONTINUE TO FEATURES<ArrowRight aria-hidden="true" /></button>
+      <p id="builder-features-note">{complete ? 'Sections complete. Choose what your website should do next.' : 'Keep at least one content section alongside Hero and Contact to continue.'}</p>
     </div>
   </section>;
 }

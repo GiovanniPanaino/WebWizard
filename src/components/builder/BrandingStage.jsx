@@ -1,13 +1,15 @@
 import { useRef, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 
-const logoTypes = ['image/png', 'image/jpeg', 'image/webp'];
+const imageTypes = ['image/png', 'image/jpeg', 'image/webp'];
 
-export default function BrandingStage({ branding, onChange, onLogoSelect, complete, onContinue, headingRef }) {
+export default function BrandingStage({ branding, onChange, onLogoSelect, onHeroArtworkSelect, complete, onContinue, headingRef }) {
   const [hexValue, setHexValue] = useState(branding.brandColor);
   const [colorError, setColorError] = useState('');
   const [logoError, setLogoError] = useState('');
   const fileRef = useRef(null);
+  const artworkFileRef = useRef(null);
+  const [artworkError, setArtworkError] = useState('');
 
   function updateHex(value) {
     setHexValue(value);
@@ -18,13 +20,26 @@ export default function BrandingStage({ branding, onChange, onLogoSelect, comple
   function uploadLogo(event) {
     const file = event.target.files[0];
     if (!file) return;
-    if (!logoTypes.includes(file.type) || file.size > 5 * 1024 * 1024) {
+    if (!imageTypes.includes(file.type) || file.size > 5 * 1024 * 1024) {
       setLogoError('Choose a PNG, JPG or WEBP image up to 5 MB.');
       event.target.value = '';
       return;
     }
     setLogoError('');
     onLogoSelect(file);
+    event.target.value = '';
+  }
+
+  function uploadHeroArtwork(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    if (!imageTypes.includes(file.type) || file.size > 10 * 1024 * 1024) {
+      setArtworkError('Choose a PNG, JPG or WEBP image up to 10 MB.');
+      event.target.value = '';
+      return;
+    }
+    setArtworkError('');
+    onHeroArtworkSelect(file);
     event.target.value = '';
   }
 
@@ -48,6 +63,12 @@ export default function BrandingStage({ branding, onChange, onLogoSelect, comple
         <p id="builder-logo-note" className="builder-field-note">PNG, JPG or WEBP, up to 5 MB. Preview only.</p>
         <div id="builder-logo-status" className="builder-logo-status" role="status">{branding.logo ? <><span>{branding.logo.name}</span><button type="button" onClick={() => { onLogoSelect(null); setLogoError(''); fileRef.current.value = ''; }}>REMOVE LOGO</button></> : 'No logo selected.'}</div>
         {logoError && <p className="builder-field-note" role="alert">{logoError}</p>}
+      </div>
+      <div className="builder-field"><label htmlFor="builder-hero-artwork">HERO ARTWORK</label>
+        <input ref={artworkFileRef} id="builder-hero-artwork" type="file" accept="image/png,image/jpeg,image/webp" onChange={uploadHeroArtwork} aria-describedby="builder-artwork-note builder-artwork-status" />
+        <p id="builder-artwork-note" className="builder-field-note">Upload the main image you'd like visitors to see first. PNG, JPG or WEBP, up to 10 MB. Preview only.</p>
+        <div id="builder-artwork-status" className="builder-logo-status" role="status">{branding.heroArtwork ? <><span>{branding.heroArtwork.name}</span><button type="button" onClick={() => { onHeroArtworkSelect(null); setArtworkError(''); artworkFileRef.current.value = ''; }}>REMOVE HERO ARTWORK</button></> : 'No hero artwork selected.'}</div>
+        {artworkError && <p className="builder-field-note" role="alert">{artworkError}</p>}
       </div>
     </div>
     <div className="builder-progression">
